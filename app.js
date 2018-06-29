@@ -2,14 +2,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 // have been pull out the database code
 const Student = require("./database");
-const utilities = require("./models")
+const models = require("./models");
 const app = express();
-const environments = require("./environments")
+const environments = require("./environments");
 
-const log4js = require("log4js")
+const log4js = require("log4js");
 var logger = log4js.getLogger();
-logger.level = 'all';
-
+logger.level = "all";
 
 logger.all("Time:", new Date());
 app.use(express.static("public"));
@@ -23,14 +22,13 @@ let memberShipNumber = 0;
  * this is a test route
  */
 app.route("/").get((req, res) => {
-  logger.all("get in this /")
-  res.send("hello man")
+  logger.all("get in this /");
+  res.send("hello man");
 });
 
-app.get("/test", (req, res)=>{
-  
-  utilities.test();
-})
+app.get("/test", (req, res) => {
+  res.send(models.test());
+});
 
 /**
  * this for submist form
@@ -74,7 +72,7 @@ app.route("/submit").post((req, res) => {
       /**
        * save student successfully
        */
-      utilities.sending(result['emailAddress']);
+      models.sending(result["emailAddress"]);
       res.send("希望能在那天见到你");
     })
     .catch(error => {

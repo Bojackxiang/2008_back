@@ -38,8 +38,7 @@ exports.sending = function(email) {
  * Test
  */
 exports.test = function(){
-  console.log(environments.auther);
-  res.send("test")
+  return "test"
 }
 
 exports.promiseTest = function promiseBuilding(x) {
