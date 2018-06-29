@@ -14,7 +14,7 @@ var studentSchema = new Schema({
     id: Number,
 });
 
-mongoose.connect(environments.mongoUrl, (err, db)=>{
+mongoose.connect(environments.mongodblocal, (err, db)=>{
   if(err){
       console.log('= = = = = = Data Base Schema = = = = = = = = =');
       console.log(err);
