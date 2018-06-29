@@ -1,58 +1,36 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const nodemailer = require("nodemailer");
-Student = require("./database");
+// have been pull out the database code
+const Student = require("./database");
+const utilities = require("./models")
 const app = express();
+const environments = require("./environments")
+
+const log4js = require("log4js")
+var logger = log4js.getLogger();
+logger.level = 'all';
+
+
+logger.all("Time:", new Date());
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // ================================ general ================================
 let memberShipNumber = 0;
 
-function promiseBuilding(x) {
-  return new Promise((resolve, reject) => {
-    if (x > 10) {
-      return resolve(x + 1);
-    } else {
-      return reject("reject");
-    }
-  });
-}
-
-var transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "batmandocode@gmail.com",
-    pass: "911004wsrA"
-  }
-});
-
-function sending(name, emailAddress) {
-  var mailOptions = {
-    from: "batmandocode@gmail.com",
-    to: emailAddress,
-    subject: "Sending Email using Node.js",
-    html: "<b>Hello world?</b>" + name
-  };
-
-  transporter.sendMail(mailOptions, function(error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("email has been send to " + mailOptions["to"]);
-    }
-  });
-}
-
 // ================================ api body ================================
 /**
  * this is a test route
  */
 app.route("/").get((req, res) => {
-  promiseBuilding(1).then(x => {
-    console.log(x);
-  });
+  logger.all("get in this /")
+  res.send("hello man")
 });
+
+app.get("/test", (req, res)=>{
+  
+  utilities.test();
+})
 
 /**
  * this for submist form
@@ -69,18 +47,15 @@ app.route("/submit").post((req, res) => {
     date.toString().split(" ")[1] +
     " " +
     date.toString().split(" ")[2];
-
   /**
    * constrol the group 1
    */
   memberShipNumber += 1;
-
   /**
    * generating basic information and save
    */
   const name = req.body.name;
   const email = req.body.emailAddress;
-  const mobileorwechat = req.body.emailAddress;
   const school = req.body.school;
   const major = req.body.major;
 
@@ -99,13 +74,14 @@ app.route("/submit").post((req, res) => {
       /**
        * save student successfully
        */
-      sending(email, name);
+      utilities.sending(result['emailAddress']);
       res.send("希望能在那天见到你");
     })
     .catch(error => {
       /**
        * now, only has duplicate error
        */
+      console.log(error);
       res.send("已经注册过了哦");
     });
 });
@@ -120,6 +96,6 @@ app.get("/data", (req, res) => {
 });
 
 // ================================ server run ================================
-app.listen(3000, () => {
+app.listen(environments.port, () => {
   console.log("server running");
 });
