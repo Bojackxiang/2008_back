@@ -7,8 +7,6 @@ const app = express();
 const environments = require("./environments");
 const logging = require("./logs");
 
-
-
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -32,7 +30,6 @@ app.get("/test", (req, res) => {
  * this for submist form
  */
 app.route("/submit").post((req, res) => {
-  
   /**
    * show the date for the register
    */
@@ -54,7 +51,6 @@ app.route("/submit").post((req, res) => {
   const email = req.body.emailAddress;
   const school = req.body.school;
   const major = req.body.major;
-  console.log(email);
 
   var newStudent = new Student({
     studentName: name,
@@ -65,25 +61,24 @@ app.route("/submit").post((req, res) => {
     id: memberShipNumber
   });
 
-  newStudent
-    .save()
-    .then(result => {
-      /**********
-       * save student successfully
+  Student.find({ emailAddress: email }).then(result => {
+    console.log("result is ****************** ");
+    console.log(result);
+    // 没有个这个用户
+    if (result == []) {
+      newStudent.save().then(result => {
+        controller.sending(result["emailAddress"]);
+        console.log("获取的email address " + result["emailAddress"]);
+        logging.info(result.emailAddress + " send email successfully");
+        res.send("希望能在那天见到你");
+      });
+    } else {
+      /********************
+       * 该用户已经注册过了
        */
-      controller.sending(result["emailAddress"]);
-      console.log("获取的email address "+ result["emailAddress"]);
-      logging.info(result.emailAddress+" send email successfully");
-      res.send("希望能在那天见到你");
-    })
-    .catch(error => {
-      /**********
-       * now, only has duplicate error
-       */
-      console.log(error["message"]);
-      logging.info(req.email+" error: "+ error);
-      res.send("已经注册过了哦");
-    });
+      res.send("你已经注册过啦");
+    }
+  });
 });
 
 /*****************************************************************************
@@ -100,7 +95,7 @@ app.get("/checkdata", (req, res) => {
  */
 app.get("/removedata", (req, res) => {
   controller.removeTable();
-  res.send("delete table")
+  res.send("delete table");
 });
 
 // ================================ server run ================================
