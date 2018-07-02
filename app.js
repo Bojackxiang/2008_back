@@ -6,11 +6,15 @@ const controller = require("./controller/controller");
 const app = express();
 const environments = require("./environments");
 const logging = require("./logs");
+const idGenerator = require("./controller/idgenerator");
+var date = new Date();
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // ================================ general ================================
+console.log(date.toString());
+
 let memberShipNumber = 0;
 
 // ================================ api body ================================
@@ -23,6 +27,7 @@ app.route("/").get((req, res) => {
 });
 
 app.get("/test", (req, res) => {
+  idGenerator.idGenerator(121);
   res.send(controller.test());
 });
 
@@ -33,7 +38,7 @@ app.route("/submit").post((req, res) => {
   /**
    * show the date for the register
    */
-  var date = new Date();
+  
   var datestring =
     date.toString().split(" ")[3] +
     " " +
@@ -44,6 +49,7 @@ app.route("/submit").post((req, res) => {
    * constrol the group 1
    */
   memberShipNumber += 1;
+  var memberId = idGenerator.idGenerator(memberShipNumber);
   /**********
    * generating basic information and save
    */
@@ -58,12 +64,10 @@ app.route("/submit").post((req, res) => {
     studentSchool: school,
     studentMajor: major,
     joinDate: datestring,
-    id: memberShipNumber
+    id: memberId,
   });
 
   Student.find({ emailAddress: email }).then(result => {
-    console.log("result is ****************** ");
-    console.log(result);
     // 没有个这个用户
     if (result.length == 0) {
       newStudent.save().then(result => {
