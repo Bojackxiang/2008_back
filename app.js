@@ -65,7 +65,7 @@ app.route("/submit").post((req, res) => {
     console.log("result is ****************** ");
     console.log(result);
     // 没有个这个用户
-    if (result == []) {
+    if (result.length == 0) {
       newStudent.save().then(result => {
         controller.sending(result["emailAddress"]);
         console.log("获取的email address " + result["emailAddress"]);

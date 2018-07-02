@@ -1,0 +1,1 @@
+{"name":"myapp","hostname":"weijiexiangdeMacBook-Pro.local","pid":15114,"level":30,"msg":"undefined send email successfully","time":"2018-07-02T08:13:30.596Z","v":0}
