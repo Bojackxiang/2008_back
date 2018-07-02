@@ -20,7 +20,7 @@ let memberShipNumber = 0;
  * this is a test route
  */
 app.route("/").get((req, res) => {
-  logger.all("get in this /");
+  logging.info("get in this /");
   res.send("hello man");
 });
 
@@ -54,6 +54,7 @@ app.route("/submit").post((req, res) => {
   const email = req.body.emailAddress;
   const school = req.body.school;
   const major = req.body.major;
+  console.log(email);
 
   var newStudent = new Student({
     studentName: name,
@@ -71,7 +72,7 @@ app.route("/submit").post((req, res) => {
        * save student successfully
        */
       controller.sending(result["emailAddress"]);
-      console.log(result.emailAddress);
+      console.log("获取的email address "+ result["emailAddress"]);
       logging.info(result.emailAddress+" send email successfully");
       res.send("希望能在那天见到你");
     })
@@ -88,10 +89,18 @@ app.route("/submit").post((req, res) => {
 /**
  * 用于返回所有用户信息
  */
-app.get("/data", (req, res) => {
+app.get("/checkdata", (req, res) => {
   Student.find({}).then(result => {
     res.json(result);
   });
+});
+
+/**
+ * 用于返回所有用户信息
+ */
+app.get("/removedata", (req, res) => {
+  controller.removeTable();
+  res.send("delete table")
 });
 
 // ================================ server run ================================
