@@ -1,3 +1,0 @@
-{"name":"myapp","hostname":"weijiexiangdeMacBook-Pro.local","pid":14252,"level":30,"msg":"keiichi911004@gmail.com send email successfully","time":"2018-07-02T07:44:07.900Z","v":0}
-{"name":"myapp","hostname":"weijiexiangdeMacBook-Pro.local","pid":14252,"level":30,"msg":"undefined error: MongoError: E11000 duplicate key error collection: Register.students index: emailAddress_1 dup key: { : \"keiichi911004@gmail.com\" }","time":"2018-07-02T07:44:09.980Z","v":0}
-{"name":"myapp","hostname":"weijiexiangdeMacBook-Pro.local","pid":14252,"level":30,"msg":"undefined error: MongoError: E11000 duplicate key error collection: Register.students index: emailAddress_1 dup key: { : \"keiichi911004@gmail.com\" }","time":"2018-07-02T07:44:12.572Z","v":0}
