@@ -1,8 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 // have been pull out the database code
-const Student = require("./database");
-const models = require("./models");
+const Student = require("./controller/database");
+const controller = require("./controller/controller");
 const app = express();
 const environments = require("./environments");
 const logging = require("./logs");
@@ -25,7 +25,7 @@ app.route("/").get((req, res) => {
 });
 
 app.get("/test", (req, res) => {
-  res.send(models.test());
+  res.send(controller.test());
 });
 
 /**
@@ -70,7 +70,7 @@ app.route("/submit").post((req, res) => {
       /**
        * save student successfully
        */
-      models.sending(result["emailAddress"]);
+      controller.sending(result["emailAddress"]);
       console.log(result.emailAddress);
       logging.info(result.emailAddress+" send email successfully");
       res.send("希望能在那天见到你");

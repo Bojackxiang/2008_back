@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const environments = require("./environments");
+const environments = require("../environments");
 // only for local database
 // const mongoUrl = "mongodb://localhost:27017/Register";
 //mongodb://weijiexiang:911004wsrA@ds221271.mlab.com:21271/registers
