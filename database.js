@@ -7,7 +7,7 @@ const Schema =  mongoose.Schema;
 
 var studentSchema = new Schema({
     studentName: String,
-    emailAddress: {type: String, unique: false},
+    emailAddress: {type: String, index:{unique: true}},
     studentSchool: String, 
     studentMajor: String,
     joinDate: String,

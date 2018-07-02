@@ -5,12 +5,10 @@ const Student = require("./database");
 const models = require("./models");
 const app = express();
 const environments = require("./environments");
+const logging = require("./logs");
 
-const log4js = require("log4js");
-var logger = log4js.getLogger();
-logger.level = "all";
 
-logger.all("Time:", new Date());
+
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -34,7 +32,7 @@ app.get("/test", (req, res) => {
  * this for submist form
  */
 app.route("/submit").post((req, res) => {
-  console.log("post from /submit");
+  
   /**
    * show the date for the register
    */
@@ -73,13 +71,16 @@ app.route("/submit").post((req, res) => {
        * save student successfully
        */
       models.sending(result["emailAddress"]);
+      console.log(result.emailAddress);
+      logging.info(result.emailAddress+" send email successfully");
       res.send("希望能在那天见到你");
     })
     .catch(error => {
       /**
        * now, only has duplicate error
        */
-      console.log(error);
+      console.log(error["message"]);
+      logging.info(req.email+" error: "+ error);
       res.send("已经注册过了哦");
     });
 });
