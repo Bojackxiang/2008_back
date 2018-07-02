@@ -28,7 +28,7 @@ app.get("/test", (req, res) => {
   res.send(controller.test());
 });
 
-/**
+/*****************************************************************************
  * this for submist form
  */
 app.route("/submit").post((req, res) => {
@@ -43,11 +43,11 @@ app.route("/submit").post((req, res) => {
     date.toString().split(" ")[1] +
     " " +
     date.toString().split(" ")[2];
-  /**
+  /*********
    * constrol the group 1
    */
   memberShipNumber += 1;
-  /**
+  /**********
    * generating basic information and save
    */
   const name = req.body.name;
@@ -68,7 +68,7 @@ app.route("/submit").post((req, res) => {
   newStudent
     .save()
     .then(result => {
-      /**
+      /**********
        * save student successfully
        */
       controller.sending(result["emailAddress"]);
@@ -77,7 +77,7 @@ app.route("/submit").post((req, res) => {
       res.send("希望能在那天见到你");
     })
     .catch(error => {
-      /**
+      /**********
        * now, only has duplicate error
        */
       console.log(error["message"]);
@@ -86,7 +86,7 @@ app.route("/submit").post((req, res) => {
     });
 });
 
-/**
+/*****************************************************************************
  * 用于返回所有用户信息
  */
 app.get("/checkdata", (req, res) => {
@@ -95,7 +95,7 @@ app.get("/checkdata", (req, res) => {
   });
 });
 
-/**
+/*****************************************************************************
  * 用于返回所有用户信息
  */
 app.get("/removedata", (req, res) => {
