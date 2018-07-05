@@ -10,7 +10,27 @@ const idGenerator = require("./controller/idgenerator");
 var date = new Date();
 
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(function (req, res, next) {
+
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', 'http://45.76.124.254/');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  // Pass to next layer of middleware
+  next();
+});
 
 // ================================ general ================================
 console.log(date.toString());
@@ -38,7 +58,7 @@ app.route("/submit").post((req, res) => {
   /**
    * show the date for the register
    */
-  
+
   var datestring =
     date.toString().split(" ")[3] +
     " " +
@@ -67,7 +87,9 @@ app.route("/submit").post((req, res) => {
     id: memberId,
   });
 
-  Student.find({ emailAddress: email }).then(result => {
+  Student.find({
+    emailAddress: email
+  }).then(result => {
     // 没有个这个用户
     if (result.length == 0) {
       newStudent.save().then(result => {
