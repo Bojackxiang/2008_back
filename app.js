@@ -74,13 +74,13 @@ app.route("/submit").post((req, res) => {
         controller.sending(result["emailAddress"]);
         console.log("获取的email address " + result["emailAddress"]);
         logging.info(result.emailAddress + " send email successfully");
-        res.send("希望能在那天见到你");
+        res.json("good");
       });
     } else {
       /********************
        * 该用户已经注册过了
        */
-      res.send("你已经注册过啦");
+      res.json("bad");
     }
   });
 });
