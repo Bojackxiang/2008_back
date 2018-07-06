@@ -10,7 +10,7 @@ var transporter = nodemailer.createTransport({
   port: "465",
   secure: String( process.env.EMAIL_PORT || "465") === "465" ? true: false,
   auth: {
-    usgiter: "admin@aisfexpo.com.au",
+    user: "admin@aisfexpo.com.au",
     pass: "Pg2CSxxSJCBErXUQ8JqetAmDtmcudZ6B",
   }
 });
