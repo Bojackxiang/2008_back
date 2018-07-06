@@ -65,6 +65,8 @@ app.route("/submit").post((req, res) => {
    * show the date for the register
    */
 
+  console.log(req);
+
   var datestring =
     date.toString().split(" ")[3] +
     " " +
