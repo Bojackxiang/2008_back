@@ -8,7 +8,7 @@ const environments = require("./environments");
 const logging = require("./logs");
 const idGenerator = require("./controller/idgenerator");
 var date = new Date();
-var cors = reuuqire("cors");
+var cors = require("cors");
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({
