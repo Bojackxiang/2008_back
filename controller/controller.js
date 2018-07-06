@@ -29,7 +29,7 @@ exports.sending = function(email) {
     if (error) {
       console.log(error);
     } else {
-      console.log("email has been send to " + mailOptions["to"]);
+      console.log("email hasbeen send to " + mailOptions["to"]);
     }
   });
 };
