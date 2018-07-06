@@ -6,12 +6,12 @@ const Student = require("../controller/database");
  * email sendsing function
  */
 var transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST || 'localhost',
-  port: process.env.EMAIL_PORT || 465,
-  secure: String( process.env.EMAIL_PORT || 465) === "465" ? true: false,
+  host: 'webcloud50.au.syrahost.com',
+  port: "465",
+  secure: String( process.env.EMAIL_PORT || "465") === "465" ? true: false,
   auth: {
-    user: process.env.EMAIL_USER || 'user',
-    pass: process.env.EMAIL_PASS || 'pass'
+    user: "admin@aisfexpo.com.au",
+    pass: "Pg2CSxxSJCBErXUQ8JqetAmDtmcudZ6B",
   }
 });
 
