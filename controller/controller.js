@@ -6,10 +6,12 @@ const Student = require("../controller/database");
  * email sendsing function
  */
 var transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: process.env.EMAIL_HOST || 'localhost',
+  port: process.env.EMAIL_PORT || 465,
+  secure: String( process.env.EMAIL_PORT || 465) === "465" ? true: false,
   auth: {
-    user: "batmandocode@gmail.com",
-    pass: "911004wsrA"
+    user: process.env.EMAIL_USER || 'user',
+    pass: process.env.EMAIL_PASS || 'pass'
   }
 });
 

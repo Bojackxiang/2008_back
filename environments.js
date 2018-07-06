@@ -7,3 +7,4 @@ module.exports = {
     "mongodblocal":     "mongodb://localhost:27017/Register",
     "test":             "this is a test for the following line" + date.toString(),
 }
+
