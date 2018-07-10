@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const request = require("request");
 // have been pull out the database code
 const Student = require("./controller/database");
 const controller = require("./controller/controller");
@@ -37,6 +36,10 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
+
+
+
+
 
 // ================================ general ================================
 console.log(date.toString());
@@ -119,13 +122,9 @@ app.route("/submit").post((req, res) => {
  * 用于返回所有用户信息
  */
 app.get("/checkdata", (req, res) => {
-  const url = "https://www.aisfexpo.com.au/api/checkdata";
-  request(url, (err, response, data)=>{
-    dataList = response.body;
-    var jsonObject = JSON.parse(dataList);
-    console.log(jsonObject);
-    console.log(typeof(jsonObject));
-    res.render("data", {jsonData: jsonObject});
+  
+  Student.find({}).then(result => {
+    res.json(result);
   });
 });
 
@@ -139,5 +138,5 @@ app.get("/removedata", (req, res) => {
 
 // ================================ server run ================================
 app.listen(environments.port, () => {
-  console.log("server runnfing");
+  console.log("server running");
 });
