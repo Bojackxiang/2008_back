@@ -124,7 +124,7 @@ app.route("/submit").post((req, res) => {
 app.get("/checkdata", (req, res) => {
   
   Student.find({}).then(result => {
-    res.json(result);
+    res.render("data", {jsonData: result});
   });
 });
 
