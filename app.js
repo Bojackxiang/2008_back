@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(cors())
+app.set("view engine", "ejs");
 
 app.use(function (req, res, next) {
 
@@ -35,6 +36,8 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
+
+
 
 
 
@@ -119,8 +122,10 @@ app.route("/submit").post((req, res) => {
  * 用于返回所有用户信息
  */
 app.get("/checkdata", (req, res) => {
+
   Student.find({}).then(result => {
-    res.json(result);
+    var jsonObject = JSON.parse(result);
+    res.render("data", {jsonData: jsonObject});
   });
 });
 
