@@ -124,8 +124,11 @@ app.route("/submit").post((req, res) => {
 app.get("/checkdata", (req, res) => {
 
   Student.find({}).then(result => {
+    console.log(result);
+    console.log(typeof(result));  
     var jsonObject = JSON.parse(result);
     res.render("data", {jsonData: jsonObject});
+  
   });
 });
 
@@ -139,5 +142,5 @@ app.get("/removedata", (req, res) => {
 
 // ================================ server run ================================
 app.listen(environments.port, () => {
-  console.log("server running");
+  console.log("server runnfing");
 });
