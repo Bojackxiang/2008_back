@@ -123,6 +123,8 @@ app.get("/checkdata", (req, res) => {
   request(url, (err, response, data) => {
     dataList = response.body;
     var jsonObject = JSON.parse(dataList);
+    console.log(jsonObject);
+    console.log(typeof(jsonObject));
     res.render("data", {jsonData: jsonObject});
   });
 });
