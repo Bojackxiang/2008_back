@@ -38,10 +38,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-
-
-
-
 // ================================ general ================================
 console.log(date.toString());
 
