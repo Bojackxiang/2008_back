@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const request = require("request");
 // have been pull out the database code
 const Student = require("./controller/database");
 const controller = require("./controller/controller");
@@ -122,13 +123,11 @@ app.route("/submit").post((req, res) => {
  * 用于返回所有用户信息
  */
 app.get("/checkdata", (req, res) => {
-
-  Student.find({}).then(result => {
-    console.log(result);
-    console.log(typeof(result));  
-    var jsonObject = JSON.parse(result);
+  const url = "https://www.aisfexpo.com.au/api/checkdata";
+  request(url, (err, response, data) => {
+    dataList = response.body;
+    var jsonObject = JSON.parse(dataList);
     res.render("data", {jsonData: jsonObject});
-  
   });
 });
 
