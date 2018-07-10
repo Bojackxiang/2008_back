@@ -124,7 +124,11 @@ app.route("/submit").post((req, res) => {
 app.get("/checkdata", (req, res) => {
   
   Student.find({}).then(result => {
-    console.log(result.length);
+    ids = []
+    for(i=0; i<result.length; i++){
+      ids.push(i);
+    }
+    console.log(ids);
     res.render("data", {jsonData: result});
   });
 });
