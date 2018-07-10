@@ -120,7 +120,7 @@ app.route("/submit").post((req, res) => {
  */
 app.get("/checkdata", (req, res) => {
   const url = "https://www.aisfexpo.com.au/api/checkdata";
-  request(url, (err, response, data) => {
+  request(url, (err, response, data)=>{
     dataList = response.body;
     var jsonObject = JSON.parse(dataList);
     console.log(jsonObject);
