@@ -128,7 +128,7 @@ app.get("/checkdata", (req, res) => {
     for(i=0; i<result.length; i++){
       ids.push(i+1);
     }
-    console.log(results);
+    console.log(result);
     res.render("data", {jsonData: result, ids: ids});
   });
 });
