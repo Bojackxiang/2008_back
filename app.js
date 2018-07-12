@@ -162,7 +162,7 @@ app.post("/addtest", (req, res) => {
   const email = req.body.emailAddress;
   const school = req.body.school;
   const major = req.body.major;
-  const joinDate = req.body.joinDate;
+  const join = req.body.joinDate;
   const userid = req.body.joinDate;
 
 
@@ -171,7 +171,7 @@ app.post("/addtest", (req, res) => {
     emailAddress: email,
     studentSchool: school,
     studentMajor: major,
-    joinDate: datestring,
+    joinDate: join,
     id:userid,
   });
 
