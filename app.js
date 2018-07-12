@@ -127,11 +127,12 @@ app.route("/submit").post((req, res) => {
 app.get("/checkdata", (req, res) => {
   Student.find({}).then(result => {
     ids = [];
+    counter = 0
     for (i = 0; i < result.length; i++) {
       ids.push(i + 1);
     }
     console.log(result);
-    res.render("data", { jsonData: result, ids: ids });
+    res.render("data", { jsonData: result, ids: ids, counter: counter,});
   });
 });
 
