@@ -162,25 +162,26 @@ app.get("/removedata", (req, res) => {
  * 用于网数据库俩面添加测试
  */
 app.post("/addtest", (req, res) => {
-  const name = req.body.name;
-  const email = req.body.emailAddress;
-  const school = req.body.school;
-  const major = req.body.major;
-  const join = req.body.joinDate;
-  const userid = req.body.id;
+  controller.addDatabase()
+  // const name = req.body.name;
+  // const email = req.body.emailAddress;
+  // const school = req.body.school;
+  // const major = req.body.major;
+  // const join = req.body.joinDate;
+  // const userid = req.body.id;
 
-  var newStudent = new Student({
-    studentName: name,
-    emailAddress: email,
-    studentSchool: school,
-    studentMajor: major,
-    joinDate: join,
-    id: userid
-  });
+  // var newStudent = new Student({
+  //   studentName: name,
+  //   emailAddress: email,
+  //   studentSchool: school,
+  //   studentMajor: major,
+  //   joinDate: join,
+  //   id: userid
+  // });
 
-  newStudent.save().then(res => {
-    console.log(res);
-  });
+  // newStudent.save().then(res => {
+  //   console.log(res);
+  // });
 });
 
 // ================================ server run ================================
