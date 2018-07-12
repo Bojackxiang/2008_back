@@ -28,7 +28,7 @@
                     <tbody>
 
                         <% jsonData.forEach(function(item){ %>
-                        <% counter = counter + 1 %>
+                        
                             <tr>
                                 <td>
                                     <%= ids[counter] %>
@@ -46,6 +46,7 @@
                                     <%= item._id %>
                                 </td>
                             </tr>
+                            <% counter = counter + 1 %>
                             <% }); %>
                     </tbody>
                 </table>
