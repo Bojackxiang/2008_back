@@ -38,7 +38,6 @@ exports.sending = function(email) {
  * ==================================================
  * drop mongodb
  */
-
 exports.removeTable = function() {
   Student.remove({})
     .then(result => {
@@ -67,3 +66,8 @@ exports.promiseTest = function promiseBuilding(x) {
     }
   });
 };
+
+/**
+ * ==================================================
+ * 
+ */
