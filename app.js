@@ -172,7 +172,7 @@ app.post("/addtest", (req, res) => {
     studentSchool: school,
     studentMajor: major,
     joinDate: join,
-    id:userid,
+    id: userid
   });
 
   newStudent.save().then(res => {
