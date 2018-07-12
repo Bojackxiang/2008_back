@@ -18,18 +18,19 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>counter</th>
                             <th>姓名</th>
                             <th>邮件地址</th>
                             <th>电话</th>
                             <th>IDs</th>
-                            <th>db_id</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% jsonData.forEach(function(item){ %>
+                        <% var counter = 0 %>
                             <tr>
                                 <td>
-                                    
+                                    <%= ids[counter] %>
                                 </td>
                                 <td>
                                     <%= item.studentName %>

@@ -163,25 +163,6 @@ app.get("/removedata", (req, res) => {
  */
 app.post("/addtest", (req, res) => {
   controller.addDatabase()
-  // const name = req.body.name;
-  // const email = req.body.emailAddress;
-  // const school = req.body.school;
-  // const major = req.body.major;
-  // const join = req.body.joinDate;
-  // const userid = req.body.id;
-
-  // var newStudent = new Student({
-  //   studentName: name,
-  //   emailAddress: email,
-  //   studentSchool: school,
-  //   studentMajor: major,
-  //   joinDate: join,
-  //   id: userid
-  // });
-
-  // newStudent.save().then(res => {
-  //   console.log(res);
-  // });
 });
 
 // ================================ server run ================================
