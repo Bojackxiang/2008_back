@@ -142,7 +142,11 @@ app.delete("/delete/:userId", (req, res) => {
   var userId = req.params.userId;
   console.log(userId);
   Student.deleteOne({ _id: userId }, err => {
-    console.log(err);
+    if(err){
+      console.log(err);
+    }else{
+      res.send("delete successfully");
+    }
   });
 });
 
