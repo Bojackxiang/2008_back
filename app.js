@@ -11,35 +11,38 @@ var date = new Date();
 var cors = require("cors");
 
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
 
-app.use(cors())
+app.use(cors());
 app.set("view engine", "ejs");
 
-app.use(function (req, res, next) {
-
+app.use(function(req, res, next) {
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader("Access-Control-Allow-Origin", "*");
 
   // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
 
   // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
 
   // Set to true if you need the website to include cookies in the requests sent
   // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader("Access-Control-Allow-Credentials", true);
 
   // Pass to next layer of middleware
   next();
 });
-
-
-
-
 
 // ================================ general ================================
 console.log(date.toString());
@@ -95,7 +98,7 @@ app.route("/submit").post((req, res) => {
     studentSchool: school,
     studentMajor: major,
     joinDate: datestring,
-    id: memberId,
+    id: memberId
   });
 
   Student.find({
@@ -122,14 +125,13 @@ app.route("/submit").post((req, res) => {
  * 用于返回所有用户信息
  */
 app.get("/checkdata", (req, res) => {
-  
   Student.find({}).then(result => {
-    ids = []
-    for(i=0; i<result.length; i++){
-      ids.push(i+1);
+    ids = [];
+    for (i = 0; i < result.length; i++) {
+      ids.push(i + 1);
     }
     console.log(result);
-    res.render("data", {jsonData: result, ids: ids});
+    res.render("data", { jsonData: result, ids: ids });
   });
 });
 
@@ -138,19 +140,44 @@ app.get("/checkdata", (req, res) => {
  */
 app.delete("/delete/:userId", (req, res) => {
   var userId = req.params.id;
-  Student.remove(userId).then((err)=>{
+  Student.remove(userId).then(err => {
     console.log(err);
     res.send("delete successfully");
-  })
-  
+  });
 });
 
 /*****************************************************************************
- * 用于返回所有用户信息
+ * 用于删除所有信息
  */
 app.get("/removedata", (req, res) => {
   controller.removeTable();
   res.send("delete table");
+});
+
+/*****************************************************************************
+ * 用于网数据库俩面添加测试
+ */
+app.post("/addtest", (req, res) => {
+  const name = req.body.name;
+  const email = req.body.emailAddress;
+  const school = req.body.school;
+  const major = req.body.major;
+  const joinDate = req.body.joinDate;
+  const userid = req.body.joinDate;
+
+
+  var newStudent = new Student({
+    studentName: name,
+    emailAddress: email,
+    studentSchool: school,
+    studentMajor: major,
+    joinDate: datestring,
+    id:userid,
+  });
+
+  newStudent.save().then(res => {
+    console.log(res);
+  });
 });
 
 // ================================ server run ================================
