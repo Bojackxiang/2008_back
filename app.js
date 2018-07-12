@@ -163,7 +163,7 @@ app.post("/addtest", (req, res) => {
   const school = req.body.school;
   const major = req.body.major;
   const join = req.body.joinDate;
-  const userid = req.body.joinDate;
+  const userid = req.body.id;
 
 
   var newStudent = new Student({
