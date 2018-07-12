@@ -140,10 +140,13 @@ app.get("/checkdata", (req, res) => {
  */
 app.delete("/delete/:userId", (req, res) => {
   var userId = req.params.id;
-  Student.remove(userId).then(err => {
-    console.log(err);
-    res.send("delete successfully");
-  });
+  Student.deleteOne({_id: userId}).then((err)=>{
+    if(err){
+      console.log(err);
+    }else{
+      res.send("delete successfully")
+    }
+  })
 });
 
 /*****************************************************************************
