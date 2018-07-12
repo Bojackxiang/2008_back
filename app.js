@@ -139,9 +139,11 @@ app.get("/checkdata", (req, res) => {
  * 用于删除某些测试用户
  */
 app.delete("/delete/:userId", (req, res) => {
-  var userId = req.params.id;
+  var userId = req.params.userId;
   console.log(userId);
-  Student.deleteOne({_id: userId}, (err)=>{console.log(err)});
+  Student.deleteOne({ _id: userId }, err => {
+    console.log(err);
+  });
 });
 
 /*****************************************************************************
@@ -162,7 +164,6 @@ app.post("/addtest", (req, res) => {
   const major = req.body.major;
   const join = req.body.joinDate;
   const userid = req.body.id;
-
 
   var newStudent = new Student({
     studentName: name,
