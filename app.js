@@ -126,11 +126,18 @@ app.get("/checkdata", (req, res) => {
   Student.find({}).then(result => {
     ids = []
     for(i=0; i<result.length; i++){
-      ids.push(i);
+      ids.push(i+1);
     }
-    console.log(ids);
-    res.render("data", {jsonData: result});
+    console.log(results);
+    res.render("data", {jsonData: result, ids: ids});
   });
+});
+
+/*****************************************************************************
+ * 用于删除某些测试用户
+ */
+app.delete("/delete/:email", (req, res) => {
+  
 });
 
 /*****************************************************************************
