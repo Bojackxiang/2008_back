@@ -136,7 +136,12 @@ app.get("/checkdata", (req, res) => {
 /*****************************************************************************
  * 用于删除某些测试用户
  */
-app.delete("/delete/:email", (req, res) => {
+app.delete("/delete/:userId", (req, res) => {
+  var userId = req.params.id;
+  Student.remove(userId).then((err)=>{
+    console.log(err);
+    res.send("delete successfully");
+  })
   
 });
 
