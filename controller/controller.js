@@ -35,9 +35,9 @@ exports.sending = function(email) {
 exports.reportSending = function(registerName, registerEmail) {
   var mailOptions = {
     from: "admin@aisfexpo.com.au",
-    to: "batmandocode@gmail.com, alexcomp911004@gmail.com",
+    to: "verity.yu@gmail.com",
     subject: "有人注册aisf啦",
-    html: "<html><body>姓名"+registerName+"<br>Email:"+registerEmail+"</body></html>",
+    html: "<html><body>姓名:"+registerName+"<br>Email:"+registerEmail+"</body></html>",
   };
 
   transporter.sendMail(mailOptions, function(error, info) {
