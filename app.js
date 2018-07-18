@@ -156,6 +156,13 @@ app.post("/addtest", (req, res) => {
   controller.addDatabase()
 });
 
+/*****************************************************************************
+ * 获取用户的source来源
+ */
+app.post("source", (req, res)=>{
+  console.log(req.body);
+});
+
 // ================================ server run ================================
 app.listen(environments.port, () => {
   console.log("server running");
