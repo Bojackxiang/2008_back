@@ -173,6 +173,10 @@ app.post("/source", (req, res) => {
       newSource.save().then((result)=>{
         res.send(result);
       });
+    }else{
+      SourceId.findOne({source: source}, (err,result)=>{
+        result.counter += 1;
+      });
     }
   });
 
