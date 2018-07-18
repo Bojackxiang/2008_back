@@ -172,12 +172,15 @@ app.post("/source", (req, res) => {
         counter: 0,
       });
       newSource.save().then((result)=>{
-        res.send(result);
+        console.log("save successfully");
+        console.log(result);
       });
     }else{
       console.log("已经存在的来源");
       SourceId.findOne({source: source}, (err,result)=>{
-        result.counter += 1;
+        console.log("save successfully");
+        console.log(err)
+        console.log(result);
       });
     }
   });
