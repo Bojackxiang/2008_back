@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
+const Schema =  mongoose.Schema;
+
 var sourceSchema = new Schema({
     source: String,
 });
 
-var Student = mongoose.model('source', sourceSchema); 
+var sourceId = mongoose.model('source', sourceSchema); 
