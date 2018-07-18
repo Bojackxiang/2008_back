@@ -188,8 +188,8 @@ app.get("/checksource", (req, res) => {
   });
 });
 
-app.delete("/deletesource", (req, res)=>{
-  SourceId.removeTable();
+app.delete("/delete/source", (req, res)=>{
+  SourceId.remove({});
   res.send("data has been removed");
 })
 
