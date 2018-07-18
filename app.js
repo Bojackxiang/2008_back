@@ -182,14 +182,22 @@ app.post("/source", (req, res) => {
 
 });
 
+/*****************************************************************************
+ * 查看用户的source来源
+ */
 app.get("/checksource", (req, res) => {
   SourceId.find({}).then(result => {
     res.send(result);
   });
 });
 
+/*****************************************************************************
+ * 删除用户来源
+ */
 app.delete("/delete/source", (req, res)=>{
-  SourceId.remove({}).then((result, err)=>{console.log(result+err)});
+  SourceId.remove((err)=>{
+    console.log(err);
+  });
   res.send("data has been removed");
 })
 
