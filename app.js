@@ -207,7 +207,13 @@ app.get("/checksource", (req, res) => {
  */
 app.get("/delete/source", (req, res)=>{
   console.log("delete source reached");
-  SourceId.remove({});
+  SourceId.remove((err)=>{
+    if(!err){
+      console.log(err);
+    }else{
+      console.log(err);
+    }
+  });
   res.send("data has been removed");
 })
 
