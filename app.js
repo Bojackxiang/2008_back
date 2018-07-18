@@ -159,7 +159,7 @@ app.post("/addtest", (req, res) => {
 /*****************************************************************************
  * 获取用户的source来源
  */
-app.post("source", (req, res)=>{
+app.post("/source", (req, res)=>{
   console.log(req.body);
 });
 
