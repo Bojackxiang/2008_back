@@ -163,7 +163,7 @@ app.post("/addtest", (req, res) => {
 app.post("/source", (req, res) => {
   var source = req.body["source"];
 
-  SourceId.findAll({source: source}).then((result)=>{
+  SourceId.find({source: source}).then((result)=>{
     // 新的source
     if(result.length == 0){
       var newSource = new SourceId ({

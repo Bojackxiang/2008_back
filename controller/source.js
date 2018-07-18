@@ -6,4 +6,4 @@ var sourceSchema = new Schema({
     source: String,
 });
 
-var sourceId = mongoose.model('source', sourceSchema); 
+var sourceId = mongoose.model('source', sourceSchema);
