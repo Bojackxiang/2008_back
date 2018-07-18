@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 // have been pull out the database code
 const Student = require("./controller/database");
+const SourceId = require("./controller/source");
 const controller = require("./controller/controller");
 const app = express();
 const environments = require("./environments");
@@ -100,7 +101,7 @@ app.route("/submit").post((req, res) => {
     if (result.length == 0) {
       newStudent.save().then(result => {
         controller.sending(result["emailAddress"]);
-        controller.reportSending(result['studentName'], result['emailAddress']);
+        controller.reportSending(result["studentName"], result["emailAddress"]);
         console.log("获取的email address " + result["emailAddress"]);
         logging.info(result.emailAddress + " send email successfully");
         res.json("good");
@@ -117,12 +118,12 @@ app.route("/submit").post((req, res) => {
 app.get("/checkdata", (req, res) => {
   Student.find({}).then(result => {
     ids = [];
-    counter = 0
+    counter = 0;
     for (i = 0; i < result.length; i++) {
       ids.push(i + 1);
     }
     console.log(result);
-    res.render("data", { jsonData: result, ids: ids, counter: counter,});
+    res.render("data", { jsonData: result, ids: ids, counter: counter });
   });
 });
 
@@ -133,9 +134,9 @@ app.delete("/delete/:userId", (req, res) => {
   var userId = req.params.userId;
   console.log(userId);
   Student.deleteOne({ _id: userId }, err => {
-    if(err){
+    if (err) {
       console.log(err);
-    }else{
+    } else {
       res.send("delete successfully");
     }
   });
@@ -153,14 +154,23 @@ app.get("/removedata", (req, res) => {
  * 用于网数据库俩面添加测试
  */
 app.post("/addtest", (req, res) => {
-  controller.addDatabase()
+  controller.addDatabase();
 });
 
 /*****************************************************************************
  * 获取用户的source来源
  */
-app.post("/source", (req, res)=>{
-  console.log(req.body);
+app.post("/source", (req, res) => {
+  var source = req.body["source"];
+  SourceId.save({
+    source: String(source)
+  });
+});
+
+app.get("/checksource", (req, res) => {
+  SourceId.find({}).then(result => {
+    res.send(result);
+  });
 });
 
 // ================================ server run ================================
