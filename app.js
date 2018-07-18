@@ -205,10 +205,10 @@ app.get("/checksource", (req, res) => {
 /*****************************************************************************
  * 删除用户来源
  */
-// app.delete("/delete/source", (req, res)=>{
-//   SourceId.remove({});
-//   res.send("data has been removed");
-// })
+app.delete("/delete/source", (req, res)=>{
+  SourceId.remove({});
+  res.send("data has been removed");
+})
 
 // ================================ server run ================================
 app.listen(environments.port, () => {
