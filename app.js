@@ -195,9 +195,7 @@ app.get("/checksource", (req, res) => {
  * 删除用户来源
  */
 app.delete("/delete/source", (req, res)=>{
-  SourceId.remove((err)=>{
-    console.log(err);
-  });
+  SourceId.remove({});
   res.send("data has been removed");
 })
 
