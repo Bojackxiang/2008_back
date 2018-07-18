@@ -166,6 +166,7 @@ app.post("/source", (req, res) => {
   SourceId.find({source: source}).then((result)=>{
     // 新的source
     if(result.length == 0){
+      console.log("新的来源");
       var newSource = new SourceId ({
         source: source,
         counter: 0,
@@ -174,6 +175,7 @@ app.post("/source", (req, res) => {
         res.send(result);
       });
     }else{
+      console.log("已经存在的来源");
       SourceId.findOne({source: source}, (err,result)=>{
         result.counter += 1;
       });
