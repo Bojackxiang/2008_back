@@ -189,7 +189,7 @@ app.get("/checksource", (req, res) => {
 });
 
 app.delete("/delete/source", (req, res)=>{
-  SourceId.remove({});
+  SourceId.remove({}).then((result, err)=>{console.log(result+err)});
   res.send("data has been removed");
 })
 
