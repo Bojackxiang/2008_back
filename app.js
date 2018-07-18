@@ -178,9 +178,15 @@ app.post("/source", (req, res) => {
     }else{
       console.log("已经存在的来源");
       SourceId.findOne({source: source}, (err,result)=>{
-        console.log("save successfully");
-        console.log(err)
-        console.log(result);
+        console.log("开始修改来源");
+        result['counter'] += 1;
+        result.save((err, update)=>{
+          if(err){
+            console.log(err);
+          }else{
+            console.log(update)
+          }
+        });
       });
     }
   });
