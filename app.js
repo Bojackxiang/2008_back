@@ -99,7 +99,7 @@ app.route("/submit").post((req, res) => {
   }).then(result => {
     // 没有个这个用户
     if (result.length == 0) {
-      newStudent.save().then(result => {
+        newStudent.save().then(result => {
         controller.sending(result["emailAddress"]);
         controller.reportSending(result["studentName"], result["emailAddress"]);
         console.log("获取的email address " + result["emailAddress"]);
@@ -162,9 +162,20 @@ app.post("/addtest", (req, res) => {
  */
 app.post("/source", (req, res) => {
   var source = req.body["source"];
-  SourceId.save({
-    source: String(source)
+
+  SourceId.find({source: source}).then((result)=>{
+    // 新的source
+    if(result.length == 0){
+      var newSource = new SourceId ({
+        source: source,
+        counter: 0,
+      });
+      newSource.save().then((result)=>{
+        res.send(result);
+      });
+    }
   });
+
 });
 
 app.get("/checksource", (req, res) => {
