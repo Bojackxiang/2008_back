@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const Student = require("./controller/database");
 const SourceId = require("./controller/source");
 const controller = require("./controller/controller");
+const report = require("./services/reportService")
 const app = express();
 const environments = require("./environments");
 const logging = require("./logs");
@@ -63,8 +64,6 @@ app.route("/submit").post((req, res) => {
   /**
    * show the date for the register
    */
-
-  console.log(req.body);
 
   var datestring =
     date.toString().split(" ")[3] +
@@ -216,6 +215,10 @@ app.delete("/delete/source", (req, res)=>{
   });
   res.send("data has been removed");
 })
+
+
+report.sendingReport();
+
 
 // ================================ server run ================================
 app.listen(environments.port, () => {
