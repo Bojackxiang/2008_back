@@ -188,6 +188,11 @@ app.get("/checksource", (req, res) => {
   });
 });
 
+app.delete("/deletesource", (req, res)=>{
+  SourceId.removeTable();
+  res.send("data has been removed");
+})
+
 // ================================ server run ================================
 app.listen(environments.port, () => {
   console.log("server running");
