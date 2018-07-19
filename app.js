@@ -11,6 +11,7 @@ const logging = require("./logs");
 const idGenerator = require("./controller/idgenerator");
 var date = new Date();
 var cors = require("cors");
+const CronJob = require('cron').CronJob;
 
 app.use(express.static("public"));
 app.use(
@@ -217,7 +218,17 @@ app.delete("/delete/source", (req, res)=>{
 })
 
 
-reportService.sendingReport();
+const job = new CronJob({
+  cronTime: '0 0 0 * * *',
+  onTick: () => {
+      reportService.sendingReport();
+  },
+  start: false,
+  timeZone: 'Australia/Melbourne'
+});
+
+job.start();
+
 
 
 // ================================ server run ================================
