@@ -5,7 +5,7 @@ const reportEmailTemplate = fs.readFileSync(`${__dirname}/report-tempalte.vm`, '
 class reportGenerateService {
     static generateHtml(sourceData) {
         const context = {
-            content,
+            sourceData,
         };
         return Velocity.render(reportEmailTemplate, context);
     }
