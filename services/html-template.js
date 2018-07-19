@@ -7,7 +7,7 @@ class reportGenerateService {
         const context = {
             sourceData,
         };
-        return Velocity.render(reportEmailTemplate, context);
+        return volecity.render(reportEmailTemplate, context);
     }
 }
 
