@@ -3,7 +3,7 @@ const fs = require('fs');
 const reportEmailTemplate = fs.readFileSync(`${__dirname}/report-tempalte.vm`, 'utf8');
 
 class reportGenerateService {
-    static generateHtml(content) {
+    static generateHtml(sourceData) {
         const context = {
             content,
         };

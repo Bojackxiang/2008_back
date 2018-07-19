@@ -36,7 +36,7 @@ class reportService {
         subject: "source report",
         html: "", // html body
       };
-      mailOptions.html = generateTempalte.reportService(result);
+      mailOptions.html = generateTempalte.reportGenerateService.generateHtml(result);
       transporter.sendMail(mailOptions, (err, info)=>{
         if(!err){
           console.log("report邮件已经发送 "+info);
