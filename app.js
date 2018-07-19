@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const Student = require("./controller/database");
 const SourceId = require("./controller/source");
 const controller = require("./controller/controller");
-const report = require("./services/reportService")
+const reportService = require("./services/reportService")
 const app = express();
 const environments = require("./environments");
 const logging = require("./logs");
@@ -217,7 +217,7 @@ app.delete("/delete/source", (req, res)=>{
 })
 
 
-report.sendingReport();
+reportService.sendingReport();
 
 
 // ================================ server run ================================

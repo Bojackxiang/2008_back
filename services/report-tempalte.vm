@@ -1,0 +1,22 @@
+<h2>Report info</h2>
+
+<p>时至今日，所有的浏览来源</p>
+
+<h4>PV Source Statistics</h4>
+<table>
+    <thead>
+        <tr>
+            <th>来源</th>
+            <th>访问次数</th>
+        </tr>
+    </thead>
+    <tbody>
+        #foreach ( $s in $sourceData )
+        <tr>
+            <td>${s.source}</td>
+            <td>${s.counter}</td>
+        </tr>
+        #end
+    </tbody>
+</table>
+

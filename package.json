@@ -18,6 +18,7 @@
     "log4js": "^2.10.0",
     "mongoose": "^5.1.7",
     "nodemailer": "^4.6.7",
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.5",
+    "velocityjs": "^1.1.1"
   }
 }
