@@ -3,9 +3,9 @@ const fs = require('fs');
 const reportEmailTemplate = fs.readFileSync(`${__dirname}/report-tempalte.vm`, 'utf8');
 
 class reportGenerateService {
-    static generateHtml(context) {
+    static generateHtml(content) {
         const context = {
-            sourceData,
+            content,
         };
         return Velocity.render(reportEmailTemplate, context);
     }
